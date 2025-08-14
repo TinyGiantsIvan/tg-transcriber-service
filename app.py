@@ -35,7 +35,7 @@ def transcribe_download_probe():
 
     try:
         print(f"[TRANSCRIBE] Starting download from: {src}", file=sys.stderr, flush=True)
-        with requests.get(src, stream=True, timeout=60) as r:
+        with requests.get(src, stream=True, timeout=(10, 600)) as r:
             r.raise_for_status()
             with out_path.open("wb") as f:
                 for chunk in r.iter_content(1024 * 256):
